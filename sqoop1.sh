@@ -1,0 +1,1 @@
+sqoop import-all-tables --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114231 --username anabig114231 --password Bigdata123 --as-parquetfile --warehouse-dir /user/anabig114231/capstone_project --m 1 --driver com.mysql.jdbc.Driver

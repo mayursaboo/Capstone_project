@@ -1,0 +1,57 @@
+Step 1: Open Mysql server using below code.
+	
+	mysql -u anabig114231 -pBigdata123
+
+Step 2: show databases;
+
+	use anabig114231;
+
+Step 3: create tables using codes
+        a. upload SQLQuery.sql to ftp (https://npbdh.cloudloka.com/ftp)
+        b. run the below command t create tables under
+           source SQLQuery.sql
+
+Step 4: Remove the existing data from hdfs incase if you created below tables in the past
+        hdfs dfs -rm -r /user/anabig1142431/hive/warehouse/employees
+	hdfs dfs -rm -r /user/anabig114246/hive/warehouse/salaries
+	hdfs dfs -rm -r /user/anabig114246/hive/warehouse/dept_manager
+	hdfs dfs -rm -r /user/anabig114246/hive/warehouse/dept_employee
+	hdfs dfs -rm -r /user/anabig114246/hive/warehouse/titles
+	hdfs dfs -rm -r /user/anabig114246/hive/warehouse/department
+
+# In case if you perform Step 4 then again go to step 3 b.
+
+
+Step 5: Now import the Mysql table to hdfs for this run the below .sh file
+
+        sh sqoop1.sh
+
+Step 6: Once tables are imported to hdfs create tables in hive. Run the following command.
+	
+	hive -f create_hive.hql > output.txt
+
+        The output of the above command will be save in the output.txt 
+
+Step 7: Once tables are created on hive, start the analysis part in Impala. Run the following command  
+
+	hive -f impala_analysis.sql > result.txt
+	
+	The output of the above command will be save in the result.txt
+
+Step 8: Run the following command
+
+	python spark_sql.py > python_output.txt
+	
+        The output of the above command will be save in the python_output.txt
+	
+	Performing EDA part on hive table using sparksql
+
+Step 9: Run the following command
+
+	python Employee_churn_prediction.py > python Employee_churn_prediction_output.txt
+	
+        The output of the above command will be save in the Employee_churn_prediction_output.txt
+	
+	Building ML Model using sparkML 
+
+	
